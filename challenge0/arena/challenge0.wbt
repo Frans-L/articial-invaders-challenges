@@ -1,0 +1,175 @@
+#VRML_SIM R2019a utf8
+DEF _world WorldInfo {
+}
+DEF _camera Viewpoint {
+  orientation -0.9465843569742055 0.30348532699818687 0.10897114952377727 0.6643245222177476
+  position 0.9575949609743506 3.9611211689028805 5.548621022275155
+}
+DEF my_robot Robot {
+  translation 0 0 1.5
+  rotation -5.8642908336531095e-08 0.9999999999999983 8.076646741804479e-14 3.141592643999999
+  children [
+    DEF FL Transform {
+      translation -0.125 -0.049999999999999996 -0.1
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 7.957737318159665e-11
+          }
+          device [
+            RotationalMotor {
+              name "front_left"
+              maxVelocity 20
+            }
+          ]
+          endPoint Solid {
+            rotation 1.0452549530158087e-09 -1.045258335121287e-09 1 1.570799693899574
+            children [
+              DEF wheel Shape {
+                appearance Appearance {
+                }
+                geometry Cylinder {
+                  height 0.049999999999999996
+                  radius 0.05
+                }
+              }
+            ]
+            boundingObject USE wheel
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+    DEF FR Transform {
+      translation 0.125 -0.049999999999999996 -0.1
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 6.524944264925872e-11
+          }
+          device [
+            RotationalMotor {
+              name "front_right"
+              maxVelocity 20
+            }
+          ]
+          endPoint Solid {
+            rotation 8.375004562679785e-10 -8.375031388411411e-10 1 1.570799693899574
+            children [
+              DEF wheel Shape {
+                appearance Appearance {
+                }
+                geometry Cylinder {
+                  height 0.049999999999999996
+                  radius 0.05
+                }
+              }
+            ]
+            name "solid(1)"
+            boundingObject USE wheel
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+    DEF RL Transform {
+      translation -0.125 -0.049999999999999996 0.1
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 6.525247906485026e-11
+          }
+          device [
+            RotationalMotor {
+              name "rear_left"
+              maxVelocity 20
+            }
+          ]
+          endPoint Solid {
+            rotation 8.375466236614367e-10 -8.375493063900511e-10 1 1.570799693899574
+            children [
+              DEF wheel Shape {
+                appearance Appearance {
+                }
+                geometry Cylinder {
+                  height 0.049999999999999996
+                  radius 0.05
+                }
+              }
+            ]
+            name "solid(2)"
+            boundingObject USE wheel
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+    DEF RR Transform {
+      translation 0.125 -0.049999999999999996 0.1
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 7.957311537402311e-11
+          }
+          device [
+            RotationalMotor {
+              name "rear_right"
+              maxVelocity 20
+            }
+          ]
+          endPoint Solid {
+            rotation 1.0451957002521763e-09 -1.0451990821581445e-09 1 1.570799693899574
+            children [
+              DEF wheel Shape {
+                appearance Appearance {
+                }
+                geometry Cylinder {
+                  height 0.049999999999999996
+                  radius 0.05
+                }
+              }
+            ]
+            name "solid(3)"
+            boundingObject USE wheel
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+    DEF BODY Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.3333333333333333 0
+        }
+      }
+      geometry Box {
+        size 0.2 0.1 0.30000000000000004
+      }
+    }
+  ]
+  name "my_'robot"
+  boundingObject USE BODY
+  physics Physics {
+  }
+  controller "my_robot"
+}
+DEF _background TexturedBackground {
+}
+DEF _light TexturedBackgroundLight {
+}
+DEF _ground RectangleArena {
+  translation 0 -0.12000000000000002 0
+  floorSize 4 4
+  floorTileSize 1 1
+}
+DEF _coins Group {
+}
+DEF _coin_handler Robot {
+  name "_coin_handler"
+  controller "_coin"
+  supervisor TRUE
+}
