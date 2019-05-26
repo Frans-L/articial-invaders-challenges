@@ -1,27 +1,23 @@
+# EDIT THIS FILE
+
+# InvaderBot is a simple helper class which has methods to control the robot.
+# It offers an interface over Webots' default motor controller.
+# You can use it, modify it or you can also use Webots' own commands.
+# Using the helper class is recommended because it will later help you to
+# transfer your code into a physical robot, which is running on Raspberry Pi.
+
 from invader_bot import InvaderBot
 
-# InvaderBot is a custom helper class that cretes interface 
-# over the webots default motor controllers. 
-# You can use the helper class or use the webots motor controllers
-# on you own.
-bot = InvaderBot() 
+bot = InvaderBot()
 bot.setup()
 
-kb = bot.robot.getKeyboard()
-kb.enable(bot.timestep)
-
+# main loop
 while bot.step():
-    current_key = kb.getKey()
-    
-    if current_key == -1:
-        bot.set_motors(0, 0)
-    if current_key == ord('W'):
-        bot.set_motors(1,1)
-    if current_key == ord('S'):
-        bot.set_motors(-1,-1)
-    if current_key == ord('A'):
-        bot.set_motors(1,-1)
-    if current_key == ord('D'):
-        bot.set_motors(-1,1)
 
-print("Closing...")
+    # get current time
+    time = bot.get_time()
+
+    if time < 1.0:
+        bot.set_motors(0.7, 0.7)
+    else:
+        bot.set_motors(-1, 1)

@@ -44,3 +44,7 @@ class InvaderBot():
     def set_right_motor(self, velocity):
         for motor in self.motors_right:
             self.set_motor(motor, velocity)
+
+    # Returns the current simulation time in seconds
+    def get_time(self):
+        return self.robot.getTime()
