@@ -2,8 +2,8 @@
 DEF _world WorldInfo {
 }
 DEF _camera Viewpoint {
-  orientation -0.9465843569742055 0.30348532699818687 0.10897114952377727 0.6643245222177476
-  position 0.9575949609743506 3.9611211689028805 5.548621022275155
+  orientation 1 0 0 5.682064919251758
+  position 0 4.643008770262436 6.479439839471
 }
 DEF my_robot Robot {
   translation 0 0 1.5
@@ -23,10 +23,12 @@ DEF my_robot Robot {
             }
           ]
           endPoint Solid {
-            rotation 1.0452549530158087e-09 -1.045258335121287e-09 1 1.570799693899574
+            rotation 3.2734138996434746e-09 -3.2734247842059866e-09 1 1.570799693899574
             children [
               DEF wheel Shape {
                 appearance Appearance {
+                  material Material {
+                  }
                 }
                 geometry Cylinder {
                   height 0.049999999999999996
@@ -55,10 +57,12 @@ DEF my_robot Robot {
             }
           ]
           endPoint Solid {
-            rotation 8.375004562679785e-10 -8.375031388411411e-10 1 1.570799693899574
+            rotation 2.6644786988098793e-09 -2.664487533020378e-09 1 1.570799693899574
             children [
               DEF wheel Shape {
                 appearance Appearance {
+                  material Material {
+                  }
                 }
                 geometry Cylinder {
                   height 0.049999999999999996
@@ -88,10 +92,12 @@ DEF my_robot Robot {
             }
           ]
           endPoint Solid {
-            rotation 8.375466236614367e-10 -8.375493063900511e-10 1 1.570799693899574
+            rotation 2.664609885553636e-09 -2.664618720205854e-09 1 1.570799693899574
             children [
               DEF wheel Shape {
                 appearance Appearance {
+                  material Material {
+                  }
                 }
                 geometry Cylinder {
                   height 0.049999999999999996
@@ -121,10 +127,12 @@ DEF my_robot Robot {
             }
           ]
           endPoint Solid {
-            rotation 1.0451957002521763e-09 -1.0451990821581445e-09 1 1.570799693899574
+            rotation 3.2732354286692036e-09 -3.2732463126307854e-09 1 1.570799693899574
             children [
               DEF wheel Shape {
                 appearance Appearance {
+                  material Material {
+                  }
                 }
                 geometry Cylinder {
                   height 0.049999999999999996
@@ -141,10 +149,8 @@ DEF my_robot Robot {
       ]
     }
     DEF BODY Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 1 0.3333333333333333 0
-        }
+      appearance OldSteel {
+        colorOverride 0.5 1 1
       }
       geometry Box {
         size 0.2 0.1 0.30000000000000004
@@ -157,16 +163,126 @@ DEF my_robot Robot {
   }
   controller "my_robot"
 }
-DEF _background TexturedBackground {
+DEF _global_light DirectionalLight {
+  ambientIntensity 1
+  direction 0 -1 0
+  intensity 0.7
+  castShadows TRUE
 }
-DEF _light TexturedBackgroundLight {
+DEF _lights Group {
+  children [
+    Solid {
+      translation 0 1.550000000000001 -4
+      children [
+        PointLight {
+          color 0.8 0.93 0.93
+          location 0 0.3 0
+        }
+      ]
+      name "solid(5)"
+    }
+    Solid {
+      translation 1.7499999999999998 1.05 -3.3
+      children [
+        PointLight {
+          color 1 0.8 0.8
+          location 0 0.3 0
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation -1.75 1.05 -3.3
+      children [
+        PointLight {
+          color 1 0.8 0.8
+          location 0 0.3 0
+        }
+      ]
+      name "solid(3)"
+    }
+  ]
 }
 DEF _ground RectangleArena {
   translation 0 -0.12000000000000002 0
   floorSize 4 4
   floorTileSize 1 1
+  floorAppearance ThreadMetalPlate {
+  }
+  wallThickness 0.015
+  wallHeight 0.3
+  wallAppearance OldSteel {
+  }
 }
 DEF _coins Group {
+  children [
+    DEF COIN Transform {
+      translation -1.5 0 -1.5
+      rotation 0 1 0 28.383185307179726
+      children [
+        Transform {
+          rotation 1 0 0 1.5707962836408271
+          children [
+            DEF Coin Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.8730601968413825 0.8625162127107653 0
+                }
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.12
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF COIN Transform {
+      translation 1.5 0 -1.5
+      rotation 0 1 0 28.383185307179726
+      children [
+        Transform {
+          rotation 1 0 0 1.5707962836408271
+          children [
+            DEF Coin Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.8730601968413825 0.8625162127107653 0
+                }
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.12
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF COIN Transform {
+      translation 0 0 -1
+      rotation 0 1 0 28.383185307179726
+      children [
+        Transform {
+          rotation 1 0 0 1.5707962836408271
+          children [
+            DEF Coin Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.8730601968413825 0.8625162127107653 0
+                }
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.12
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 DEF _coin_handler Robot {
   name "_coin_handler"

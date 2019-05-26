@@ -40,11 +40,10 @@ def update():
 
     # inform the user about the coins
     supervisor.setLabel(0, "COINS LEFT: %d" %
-                        (count), 0.02, 0.02, 0.1, 0xffffff, 0)
-
-    # check if the challenge is completed
+                        (count), 0.02, 0.02, 0.1, 0xffffff, 0, "Impact")
     if count == 0:
-        supervisor.setLabel(1, "VICTORY", 0.35, 0.35, 0.2, 0xffffff, 0)
+        supervisor.setLabel(1, "MISSION\nCOMPLETED",
+                            0.02, 0.1, 0.1, 0xffffff, 0, "Impact")
 
 
 def reset():
@@ -67,7 +66,7 @@ def reset():
         translation = coin.getField("translation")
         translation.setSFVec3f(pos)
 
-    make_coin([0, 0, -0.5])
+    make_coin([0, 0, -1])
     make_coin([1.5, 0, -1.5])
     make_coin([-1.5, 0, -1.5])
 
